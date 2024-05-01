@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">iTunes Movie Explorer</string>
+    <string name="content_description_cover_movie">Artwork of %s</string>
+    <string name="back_icon">Back Icon</string>
+    <string name="type_the_keyword_here">Search here</string>
+    <string name="empty_search_result">Can\'t find anything, try another keywords</string>
+    <string name="first_search_placeholder">Try search on search box</string>
+    <string name="error">Error\n%s</string>
+    <string name="release_date">Release Date: %s</string>
+    <string name="genre">Genre</string>
+    <string name="rent_price">Rent Price</string>
+    <string name="from">From</string>
+    <string name="country_flag">Country flag</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="explicit_content">Explicit Content</string>
+    <string name="iso_alpha_2">%s (ISO Alpha-2)</string>
+    <string name="go_to_favorite">Go to Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_favorite_movies">Your Favorite Movies</string>
+    <string name="try_like_a_movie_in_search_menu">Try like a movie in search menu</string>
+</resources>

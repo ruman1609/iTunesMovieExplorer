@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+def getLocalProperty(String propName) {
+    def propsFile = rootProject.file("local.properties")
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        if (props[propName] != null) {
+            return props[propName]
+        } else {
+            print("No such property " + propName + " in file " + filename)
+        }
+    } else {
+        print(filename + " does not exist!")
+    }
+}
+
+android {
+    namespace 'com.rudyrachman16.itunesmovieexplorer'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.rudyrachman16.itunesmovieexplorer"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "FLAG_URL", getLocalProperty("FLAG_URL")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation project(":core")
+
+    implementation 'androidx.core:core-ktx:1.13.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // region Hilt
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+    // endregion Hilt
+
+    // region navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // endregion navigation component
+
+    implementation 'com.airbnb.android:lottie:6.1.0'  // lottie
+    implementation 'com.github.bumptech.glide:glide:4.16.0'  // glide
+    implementation 'com.github.corouteam:GlideToVectorYou:2.0.0'  // so Glide can Load SVG
+    implementation "androidx.core:core-splashscreen:1.0.1"  // splash screen
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'  // shimmer loading
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"  // asLiveData
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+// Allow references to generated code (for hilt dagger)
+kapt {
+    correctErrorTypes true
+}

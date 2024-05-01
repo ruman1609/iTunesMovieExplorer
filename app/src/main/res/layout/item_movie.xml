@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/layout_loading_movie_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_movie_cover_item_loading"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/content_description_cover_movie"
+                android:src="@color/colorCustomColor_mediumContrast"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/ltt_like_unlike_item_loading"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorCustomColor_mediumContrast"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_movie_title_loading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_movie_title_loading" />
+
+            <TextView
+                android:id="@+id/txt_movie_title_loading"
+                style="@style/Text.H1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorCustomColor_mediumContrast"
+                app:layout_constraintEnd_toStartOf="@+id/ltt_like_unlike_item_loading"
+                app:layout_constraintStart_toEndOf="@+id/img_movie_cover_item_loading"
+                app:layout_constraintTop_toTopOf="@+id/img_movie_cover_item_loading"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/txt_movie_description_loading"
+                style="@style/Text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorCustomColor_mediumContrast"
+                android:ellipsize="end"
+                android:lines="3"
+                android:maxLines="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_movie_title_loading"
+                app:layout_constraintTop_toBottomOf="@+id/txt_movie_title_loading"
+                tools:text="@tools:sample/lorem/random" />
+
+            <TextView
+                android:id="@+id/txt_movie_genre_loading"
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorCustomColor_mediumContrast"
+                android:minWidth="48dp"
+                android:padding="4dp"
+                app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_movie_price_loading"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/txt_movie_description_loading"
+                app:layout_constraintTop_toBottomOf="@+id/txt_movie_description_loading"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/txt_movie_price_loading"
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorCustomColor_mediumContrast"
+                android:minWidth="48dp"
+                android:padding="4dp"
+                android:textColor="@color/colorCustomColor_mediumContrast"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_movie_genre_loading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/txt_movie_genre_loading"
+                app:layout_constraintTop_toTopOf="@+id/txt_movie_genre_loading"
+                tools:text="@tools:sample/cities" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_content_movie_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_movie_cover_item"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/content_description_cover_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ltt_like_unlike_item"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_movie_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_movie_title"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="like_unlike_lottie.json"
+            app:lottie_loop="false" />
+
+        <TextView
+            android:id="@+id/txt_movie_title"
+            style="@style/Text.H1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/ltt_like_unlike_item"
+            app:layout_constraintStart_toEndOf="@+id/img_movie_cover_item"
+            app:layout_constraintTop_toTopOf="@+id/img_movie_cover_item"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/txt_movie_description"
+            style="@style/Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:lines="3"
+            android:maxLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_movie_title"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/txt_movie_genre"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_genre"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_movie_price"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/txt_movie_description"
+            app:layout_constraintTop_toBottomOf="@+id/txt_movie_description"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/txt_movie_price"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="16dp"
+            android:padding="4dp"
+            android:textColor="@color/colorCustomColor_mediumContrast"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_movie_genre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/txt_movie_genre"
+            app:layout_constraintTop_toTopOf="@+id/txt_movie_genre"
+            tools:text="@tools:sample/cities" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
