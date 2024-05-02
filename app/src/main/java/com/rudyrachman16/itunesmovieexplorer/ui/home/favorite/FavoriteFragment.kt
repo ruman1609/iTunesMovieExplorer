@@ -86,6 +86,8 @@ class FavoriteFragment : Fragment() {
         if (index >= 0) {
             viewModel.listSearchResult[index].isFavorite = false
         }
+
+        it.isFavorite = false
     }
 
     override fun onCreateView(

@@ -87,6 +87,17 @@ class DetailFragment : Fragment() {
                 } else {
                     viewModel.deleteFromFavorite(it)
                 }
+
+                if (args.fromFavorite) {
+                    val find =
+                        viewModel.listSearchResult.find { search -> it.trackId == search.trackId }
+                            ?: return@setOnClickListener
+
+                    val index = viewModel.listSearchResult.indexOf(find)
+                    if (index >= 0) {
+                        viewModel.listSearchResult[index].isFavorite = it.isFavorite
+                    }
+                }
             }
         }
 
