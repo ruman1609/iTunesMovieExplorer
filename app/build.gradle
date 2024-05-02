@@ -17,7 +17,7 @@ def getLocalProperty(String propName) {
             print("No such property " + propName + " in file " + filename)
         }
     } else {
-        print(filename + " does not exist!")
+        print("local.properties does not exist!")
     }
 }
 
