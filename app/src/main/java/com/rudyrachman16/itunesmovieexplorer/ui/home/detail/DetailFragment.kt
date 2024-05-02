@@ -17,6 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.appbar.AppBarLayout
+import com.rudyrachman16.itunesmovieexplorer.BuildConfig
 import com.rudyrachman16.itunesmovieexplorer.R
 import com.rudyrachman16.itunesmovieexplorer.core.Status
 import com.rudyrachman16.itunesmovieexplorer.core.model.Movie
@@ -46,6 +47,8 @@ class DetailFragment : Fragment() {
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             findNavController().navigateUp()
+            this.isEnabled = false
+            this.remove()
         }
     }
 
@@ -67,7 +70,7 @@ class DetailFragment : Fragment() {
             bind.txtDetailMovieReleaseDate.text = getString(R.string.release_date, it.releaseDate)
             bind.txtDetailMovieGenre.text = it.primaryGenreName
             bind.txtDetailMoviePrice.text = it.trackPrice
-            bind.imgDetailMovieCountry.loadSVG("https://flagicons.lipis.dev/flags/4x3/${it.country}.svg")
+            bind.imgDetailMovieCountry.loadSVG("${BuildConfig.FLAG_URL}${it.country}.svg")
             bind.txtDetailMovieCountry.text =
                 getString(R.string.iso_alpha_2, it.country.uppercase())
             bind.txtDetailMovieDescription.text = it.longDescription
@@ -140,8 +143,8 @@ class DetailFragment : Fragment() {
         super.onDestroyView()
         _bind = null
         movie = null
+        viewModel.cUResult.removeObservers(viewLifecycleOwner)
         onBackPressedCallback.isEnabled = false
         onBackPressedCallback.remove()
-        viewModel.cUResult.removeObservers(viewLifecycleOwner)
     }
 }

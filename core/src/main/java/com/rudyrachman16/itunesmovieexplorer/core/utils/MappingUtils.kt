@@ -9,6 +9,11 @@ import com.rudyrachman16.itunesmovieexplorer.core.utils.StringUtils.releaseDateT
 import com.rudyrachman16.itunesmovieexplorer.core.utils.StringUtils.toMoneyFormat
 
 object MappingUtils {
+    /**
+     * Converting MovieResponse into Movie, for showing Movie from API Response
+     * @see MovieResponse
+     * @see Movie
+     */
     fun MovieResponse.toMovie() = Movie(
         kind = this.kind ?: "-",
         artistName = this.artistName ?: "-",
@@ -37,6 +42,11 @@ object MappingUtils {
         trackRentalPrice = (this.trackRentalPrice ?: .0).toMoneyFormat(),
     )
 
+    /**
+     * Converting MovieEntity into Movie, for showing Movie from Database
+     * @see MovieEntity
+     * @see Movie
+     */
     fun MovieEntity.toMovie() = Movie(
         kind = this.kind,
         artistName = this.artistName,
@@ -66,6 +76,11 @@ object MappingUtils {
         isFavorite = true
     )
 
+    /**
+     * Converting Movie into MovieEntity, for saving to database purpose
+     * @see Movie
+     * @see MovieEntity
+     */
     fun Movie.toMovieEntity() = MovieEntity(
         kind = this.kind,
         artistName = this.artistName,

@@ -10,22 +10,24 @@
         android:id="@+id/app_bar_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="false">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_detail_header"
-
-            android:fitsSystemWindows="true"
+            android:fitsSystemWindows="false"
+            android:minHeight="0dp"
+            android:padding="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_inside_collapsing_toolbar_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="48dp">
+                android:layout_marginBottom="48dp"
+                android:fitsSystemWindows="true">
 
                 <ImageView
                     android:id="@+id/img_detail_cover"

@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/img_detail_movie_back_toolbar"
+                android:id="@+id/img_favorite_back_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -48,7 +48,7 @@
                 android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/img_detail_movie_back_toolbar"
+                app:layout_constraintStart_toEndOf="@id/img_favorite_back_toolbar"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

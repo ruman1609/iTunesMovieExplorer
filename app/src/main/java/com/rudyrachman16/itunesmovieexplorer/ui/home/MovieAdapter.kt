@@ -11,7 +11,6 @@ import com.rudyrachman16.itunesmovieexplorer.databinding.ItemMovieBinding
 import com.rudyrachman16.itunesmovieexplorer.utils.ImageUtils.load
 
 class MovieAdapter(
-    private val isForFavorite: Boolean = false,
     private val clickCallback: (position: Int) -> Unit,
     private val favCallback: (movie: Movie) -> Unit
 ) : ListAdapter<Movie, MovieAdapter.ViewHolder>(object : DiffUtil.ItemCallback<Movie>() {
@@ -50,10 +49,6 @@ class MovieAdapter(
                     if (bind.lttLikeUnlikeItem.progress == 1f) -1f else 1f
                 bind.lttLikeUnlikeItem.playAnimation()
                 favCallback(movie)
-
-                if (isForFavorite) {
-
-                }
             }
 
             bind.root.setOnClickListener { clickCallback(adapterPosition) }

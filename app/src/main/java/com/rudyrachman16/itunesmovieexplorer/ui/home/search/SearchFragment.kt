@@ -34,15 +34,14 @@ class SearchFragment : Fragment() {
             findNavController().navigate(
                 SearchFragmentDirections.actionSearchFragmentToDetailFragment(it)
             )
-        },
-        favCallback = {
-            if (it.isFavorite) {
-                viewModel.insertToFavorite(it)
-            } else {
-                viewModel.deleteFromFavorite(it)
-            }
         }
-    )
+    ) {
+        if (it.isFavorite) {
+            viewModel.insertToFavorite(it)
+        } else {
+            viewModel.deleteFromFavorite(it)
+        }
+    }
 
     private var isFirst = true
 

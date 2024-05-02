@@ -7,6 +7,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 object FlowUtils {
+
+    /**
+     * to shortening time for code using this function
+     * @param successCallback callback function for emitting Status.Success returns as T class
+     */
     fun <T> defaultFlowCallback(successCallback: suspend () -> T) = flow {
         emit(Status.Loading)
         try {

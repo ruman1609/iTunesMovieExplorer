@@ -26,11 +26,14 @@ class FavoriteFragment : Fragment() {
 
     private val viewModel: HomeViewModel by activityViewModels()
 
-    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            findNavController().navigateUp()
+    private var onBackPressedCallback: OnBackPressedCallback =
+        object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                this.isEnabled = false
+                this.remove()
+                findNavController().navigateUp()
+            }
         }
-    }
 
     private val observerFavMovies = Observer<Status<List<Movie>>> {
         when (it) {
@@ -62,29 +65,28 @@ class FavoriteFragment : Fragment() {
                 adapter.submitList(viewModel.listFavoriteMovies.toList())
                 showRv(viewModel.listFavoriteMovies.isEmpty())
             }
+
             Status.Loading -> {}
         }
     }
 
     private val adapter = MovieAdapter(
-        isForFavorite = true,
         clickCallback = {
             findNavController().navigate(
                 FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(it, true)
             )
-        },
-        favCallback = {
-            viewModel.listFavoriteMovies.remove(it)
-            viewModel.deleteFromFavorite(it)
-
-            it.isFavorite = true
-
-            val index = viewModel.listSearchResult.indexOf(it)
-            if (index >= 0) {
-                viewModel.listSearchResult[index].isFavorite = false
-            }
         }
-    )
+    ) {
+        viewModel.listFavoriteMovies.remove(it)
+        viewModel.deleteFromFavorite(it)
+
+        it.isFavorite = true
+
+        val index = viewModel.listSearchResult.indexOf(it)
+        if (index >= 0) {
+            viewModel.listSearchResult[index].isFavorite = false
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -97,13 +99,21 @@ class FavoriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.listFavoriteMovies.removeAll { !it.isFavorite }
+
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
+                this.isEnabled = false
+                this.remove()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
-        bind.imgDetailMovieBackToolbar.setOnClickListener { findNavController().navigateUp() }
+        bind.imgFavoriteBackToolbar.setOnClickListener { findNavController().navigateUp() }
         bind.layoutEmptyFavorite.setOnClickListener { findNavController().navigateUp() }
 
         viewModel.getFavoriteMovies().observe(viewLifecycleOwner, observerFavMovies)
